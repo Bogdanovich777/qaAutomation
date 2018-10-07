@@ -1,15 +1,15 @@
 import requests
 
-url = 'https://mail.ru/login'
+url = 'https://e.mail.ru/login?from=portal'
 s = requests.session()
 r = s.get(url, verify=False)
 act_token = r.cookies['act']
-
+url2 = 'https://mail.ru/'
 
 
 data = {
-    'Login' : 'alligatoro',
-    'Password' : '37951qwedAnn',
+    'login' : 'alligatoro%40mail.ru',
+    'password' : '37951qwedAnn',
 #    'saveauth' : '1',
 #    'new_auth_form' : '1',
 #    'FromAccount' : 'opener%3Dmail.login%26allow_external%3D1',
@@ -21,6 +21,9 @@ data = {
 
 auth = s.post(url, data=data)
 
-print(r.status_code)
+d = requests.get(url2, verify=False)
+print(d.status_code)
 
-print(r.text)
+print(d.text)
+
+
