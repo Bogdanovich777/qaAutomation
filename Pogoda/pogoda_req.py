@@ -13,14 +13,16 @@ with open ('pogoda.html', 'wb') as file:
 
 
 file = open('pogoda.html', 'rb')
+print(file)
 soup = BeautifulSoup(file, 'lxml')
 
-pogoda_list = soup.find("tr", {'td class': 'legend'})
+pogoda_list = soup.find_all("div", attrs={"id":"header"})
+# pogoda_list = soup.select("table")
 
 print(pogoda_list)
-with open ('123.html', 'wb') as new_file:
-    new_file.write(pogoda_list.encode('utf-8'))
-    new_file.close()
+#with open ('123.html', 'wb') as new_file:
+#    new_file.write(pogoda_list.encode('utf-8'))
+#    new_file.close()
 
 
 
