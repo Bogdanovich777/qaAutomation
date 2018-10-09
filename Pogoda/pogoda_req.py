@@ -1,28 +1,51 @@
 import requests
 from bs4 import BeautifulSoup
-import lxml
 
-url = 'http://pogoda.by/'
+
+url = 'http://6.pogoda.by/'
 
 r = requests.get(url)
 
 
 with open ('pogoda.html', 'wb') as file:
-    file.write(r.text.encode('utf-8'))     #Сохранили страничку в виде HTML
+    file.write(r.text.encode('cp1251'))     #Сохранили страничку в виде HTML
     file.close()
 
 
 file = open('pogoda.html', 'rb')
-print(file)
 soup = BeautifulSoup(file, 'lxml')
 
-pogoda_list = soup.find_all("div", attrs={"id":"header"})
-# pogoda_list = soup.select("table")
+pogoda_list = soup.find("table", attrs={"id":"forecast"})
+pogoda2 = soup.find_all('tr')[9]
 
-print(pogoda_list)
-#with open ('123.html', 'wb') as new_file:
-#    new_file.write(pogoda_list.encode('utf-8'))
-#    new_file.close()
+
+#print(pogoda_list)
+with open ('pogoda.html', 'wb') as file:
+    file.write(pogoda2.encode('cp1251'))
+    file.close()
+
+file = open('pogoda.html', 'rb')
+pogoda3 = soup.find('tr')
+
+print(pogoda3)
+
+
+
+
+#with open ('pogoda.html', 'wb') as file:
+#    file.write(pogoda3.encode('cp1251'))
+#    file.close()
+#new_file = open('123.html', 'rb')
+#soup2 = BeautifulSoup(new_file, 'lxml')
+#pogoda2 = soup.find_all('tr')[6]
+
+#with open ('lit.html', 'wb') as new:
+#    new.write(pogoda2.encode('cp1251'))
+#    new.close()
+
+#soup3 = BeautifulSoup(new, 'lxml')
+#pogoda3 = soup
+
 
 
 
