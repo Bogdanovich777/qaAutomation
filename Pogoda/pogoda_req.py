@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 
-url = 'http://6.pogoda.by/'
+url = 'http://6.pogoda.by/' # url
 
 r = requests.get(url)
 
